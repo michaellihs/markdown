@@ -1,0 +1,14 @@
+plugin.tx_mkdwn {
+	view {
+		# cat=plugin.tx_mkdwn/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:mkdwn/Resources/Private/Templates/
+		# cat=plugin.tx_mkdwn/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:mkdwn/Resources/Private/Partials/
+		# cat=plugin.tx_mkdwn/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:mkdwn/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_mkdwn//a; type=int+; label=Default storage PID
+		storagePid = 
+	}
+}
