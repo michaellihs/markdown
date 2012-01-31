@@ -23,6 +23,8 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+require_once t3lib_extMgm::extPath('mkdwn') . 'Classes/Markdown/markdown.php';
+
 /**
  * Controller for the ContentElement object
  *
@@ -30,21 +32,22 @@
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-
 class Tx_Mkdwn_Controller_ContentElementController extends Tx_Extbase_MVC_Controller_ActionController {
-	
-	
-		
+
 	/**
 	 * Displays a single ContentElement
 	 *
-	 * @param Tx_Mkdwn_Domain_Model_ContentElement $contentElement the ContentElement to display
 	 * @return string The rendered view
 	 */
-	public function showAction(Tx_Mkdwn_Domain_Model_ContentElement $contentElement) {
+	public function showAction(Tx_Mkdwn_Domain_Model_ContentElement $contentElement=null) {
+        if ($contentElement === null) {
+            $contentElement = t3lib_div::makeInstance('Tx_Mkdwn_Domain_Repository_ContentElementRepository')->findByUid(1);
+        }
+
 		$this->view->assign('contentElement', $contentElement);
+        $this->view->assign('renderedSource', Markdown($contentElement->getSource()));
+        $this->view->assign('source', $contentElement->getSource());
 	}
-	
 
 }
 ?>
